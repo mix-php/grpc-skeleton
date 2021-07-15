@@ -30,6 +30,7 @@ class DB
 
     public static function enableCoroutine()
     {
+        \Swoole\Runtime::enableCoroutine();
         $maxOpen = 30;        // 最大开启连接数
         $maxIdle = 10;        // 最大闲置连接数
         $maxLifetime = 3600;  // 连接的最长生命周期
