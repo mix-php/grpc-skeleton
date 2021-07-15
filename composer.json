@@ -1,6 +1,6 @@
 {
-  "name": "mix/api-skeleton",
-  "description": "API development skeleton",
+  "name": "mix/grpc-skeleton",
+  "description": "gRPC development skeleton",
   "type": "project",
   "homepage": "https://openmix.org/mix-php",
   "license": "Apache-2.0",
