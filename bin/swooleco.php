@@ -10,12 +10,13 @@ $dotenv->load(__DIR__ . '/../.env');
 define("APP_DEBUG", $_ENV['APP_DEBUG']);
 
 Swoole\Coroutine\run(function () {
-    App\Container\DB::enableCoroutine();
-    App\Container\RDS::enableCoroutine();
-
     $grpc = Grpc::new();
-    $server = new Swoole\Coroutine\Http\Server('127.0.0.1', 9502, false, false);
-    $server->handle('/', $grpc->handler());
+    $server = new Swoole\Coroutine\Http\Server('0.0.0.0', 9502, false, false);
+    $init = function () {
+        App\Container\DB::enableCoroutine();
+        App\Container\RDS::enableCoroutine();
+    };
+    $server->handle('/', $grpc->handler($init));
     $server->set([
         'open_http2_protocol' => true,
         'http_compression' => false,
