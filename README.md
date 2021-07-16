@@ -131,6 +131,10 @@ kill PID
 composer run-script swoole:start
 ```
 
+## 如何使用 gRPC 客户端
+
+- [mix-php/grpc#客户端调用一个 gRPC 服务](https://github.com/mix-php/grpc#%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%B0%83%E7%94%A8%E4%B8%80%E4%B8%AA-grpc-%E6%9C%8D%E5%8A%A1)
+
 ## 使用容器中的对象
 
 容器采用了一个简单的单例模式，你可以修改为更加适合自己的方式。
