@@ -7,7 +7,7 @@ use Symfony\Component\Dotenv\Dotenv;
 
 $dotenv = new Dotenv();
 $dotenv->load(__DIR__ . '/../.env');
-define("APP_DEBUG", $_ENV['APP_DEBUG']);
+define("APP_DEBUG", $_ENV['APP_DEBUG'] !== 'false' && $_ENV['APP_DEBUG']);
 
 $grpc = Grpc::new();
 $http = new Swoole\Http\Server('0.0.0.0', 9501);
