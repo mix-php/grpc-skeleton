@@ -12,15 +12,14 @@ define("APP_DEBUG", $_ENV['APP_DEBUG'] !== 'false' && $_ENV['APP_DEBUG']);
 Swoole\Coroutine\run(function () {
     $grpc = Grpc::new();
     $server = new Swoole\Coroutine\Http\Server('0.0.0.0', 9502, false, false);
-    $init = function () {
-        App\Container\DB::enableCoroutine();
-        App\Container\RDS::enableCoroutine();
-    };
-    $server->handle('/', $grpc->handler($init));
+    $server->handle('/', $grpc->handler());
     $server->set([
         'open_http2_protocol' => true,
         'http_compression' => false,
     ]);
+
+    App\Container\DB::enableCoroutine();
+    App\Container\RDS::enableCoroutine();
 
     foreach ([SIGHUP, SIGINT, SIGTERM] as $signal) {
         Swoole\Process::signal($signal, function () use ($server) {
