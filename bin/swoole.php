@@ -3,11 +3,10 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use App\Container\Logger;
 use App\Grpc;
-use Symfony\Component\Dotenv\Dotenv;
+use Dotenv\Dotenv;
 
-$dotenv = new Dotenv();
-$dotenv->load(__DIR__ . '/../.env');
-define("APP_DEBUG", $_ENV['APP_DEBUG'] !== 'false' && $_ENV['APP_DEBUG']);
+Dotenv::createUnsafeImmutable(__DIR__ . '/../', '.env')->load();
+define("APP_DEBUG", env('APP_DEBUG'));
 
 /**
  * 多进程默认开启了协程

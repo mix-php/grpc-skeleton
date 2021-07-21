@@ -14,7 +14,10 @@
       "App\\": "src/",
       "GPBMetadata\\": "proto/GPBMetadata/",
       "Php\\": "proto/Php/"
-    }
+    },
+    "files": [
+      "src/functions.php"
+    ]
   },
   "require": {
     "workerman/workerman": "^4.0",
@@ -22,7 +25,7 @@
     "mix/grpc": "~3.0",
     "mix/database": "~3.0",
     "mix/redis": "~3.0",
-    "symfony/dotenv": "^5.3",
+    "vlucas/phpdotenv": "^5.3",
     "hassankhan/config": "^2.2",
     "monolog/monolog": "^2.3"
   },
