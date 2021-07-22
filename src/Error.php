@@ -11,12 +11,19 @@ use App\Container\Logger;
 class Error
 {
 
+    /**
+     * @var Error
+     */
+    static private $instance;
+
     public static function register(): void
     {
-        $error = new Error();
-        set_error_handler([$error, 'error']);
-        set_exception_handler([$error, 'exception']); // swoole 协程不支持该函数
-        register_shutdown_function([$error, 'shutdown']);
+        if (!isset(self::$instance)) {
+            self::$instance = new Error();
+            set_error_handler([self::$instance, 'error']);
+            set_exception_handler([self::$instance, 'exception']); // swoole 协程不支持该函数
+            register_shutdown_function([self::$instance, 'shutdown']);
+        }
     }
 
     /**
@@ -61,6 +68,14 @@ class Error
     public function exception(\Throwable $ex): void
     {
         Logger::instance()->error(sprintf('%s in %s on line %d', $ex->getMessage(), $ex->getFile(), $ex->getLine()));
+    }
+
+    /**
+     * @param \Throwable $ex
+     */
+    public static function handle(\Throwable $ex)
+    {
+        self::$instance->exception($ex);
     }
 
 }

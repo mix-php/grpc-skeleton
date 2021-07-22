@@ -19,8 +19,13 @@ $grpc = Grpc::new();
 $http = new Swoole\Http\Server('0.0.0.0', 9501);
 $http->on('Request', $grpc->handler());
 $http->on('WorkerStart', function ($server, $workerId) {
-    App\Container\DB::enableCoroutine();
-    App\Container\RDS::enableCoroutine();
+    // swoole 协程不支持 set_exception_handler 需要手动捕获异常
+    try {
+        App\Container\DB::enableCoroutine();
+        App\Container\RDS::enableCoroutine();
+    } catch (\Throwable $ex) {
+        App\Error::handle($ex);
+    }
 });
 $http->set([
     'enable_coroutine' => true,
