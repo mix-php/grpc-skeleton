@@ -8,6 +8,8 @@ use Dotenv\Dotenv;
 Dotenv::createUnsafeImmutable(__DIR__ . '/../', '.env')->load();
 define("APP_DEBUG", env('APP_DEBUG'));
 
+App\Error::register();
+
 /**
  * 多进程默认开启了协程
  * 关闭协程只需关闭 `enable_coroutine` 配置并注释数据库的 `::enableCoroutine()` 即可退化为多进程同步模式

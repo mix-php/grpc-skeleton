@@ -8,6 +8,8 @@ use Dotenv\Dotenv;
 Dotenv::createUnsafeImmutable(__DIR__ . '/../', '.env')->load();
 define("APP_DEBUG", env('APP_DEBUG'));
 
+App\Error::register();
+
 Swoole\Coroutine\run(function () {
     $grpc = Grpc::new();
     $server = new Swoole\Coroutine\Http\Server('0.0.0.0', 9502, false, false);
