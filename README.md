@@ -48,6 +48,8 @@ composer run-script --timeout=0 swooleco:start
 php bin/swoole.php start
 ```
 
+## 部署
+
 线上部署启动时，修改 `shell/server.sh` 脚本中的绝对路径和参数
 
 ```
@@ -64,6 +66,8 @@ sh shell/server.sh start
 sh shell/server.sh stop
 sh shell/server.sh restart
 ```
+
+使用 `nginx` 或者 `SLB` 代理到服务器端口即可
 
 ## 编写一个 gRPC 接口
 
