@@ -67,7 +67,7 @@ sh shell/server.sh stop
 sh shell/server.sh restart
 ```
 
-使用 `nginx` 或者 `SLB` 代理到服务器端口即可
+gRPC 通常都是内部使用，使用内网 `SLB` 代理到服务器IP或者直接使用 IP:PORT 调用
 
 ## 编写一个 gRPC 接口
 
