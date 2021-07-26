@@ -2,6 +2,7 @@
 
 namespace App\Container;
 
+use Monolog\Formatter\LineFormatter;
 use Monolog\Handler\HandlerInterface;
 use Monolog\Handler\RotatingFileHandler;
 
@@ -21,7 +22,9 @@ class Logger implements HandlerInterface
     {
         if (!isset(self::$instance)) {
             $logger = new \Monolog\Logger('MIX');
-            $logger->pushHandler(new RotatingFileHandler(__DIR__ . '/../../runtime/logs/mix.log', 7));
+            $rotatingFileHandler = new RotatingFileHandler(__DIR__ . '/../../runtime/logs/mix.log', 7);
+            $rotatingFileHandler->setFormatter(new LineFormatter("[%datetime%] %channel%.%level_name%: %message% %context% %extra%\n", 'Y-m-d H:i:s.u'));
+            $logger->pushHandler($rotatingFileHandler);
             $logger->pushHandler(new Logger());
             self::$instance = $logger;
         }
