@@ -5,8 +5,8 @@
   "homepage": "https://openmix.org/mix-php",
   "license": "Apache-2.0",
   "scripts": {
-    "swoole:start": "php bin/swoole.php start",
-    "swooleco:start": "php bin/swooleco.php start",
+    "swoole:start": "php bin/swoole.php",
+    "swooleco:start": "php bin/swooleco.php",
     "cli:clearcache": "php bin/cli.php clearcache"
   },
   "autoload": {

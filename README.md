@@ -4,7 +4,7 @@
 
 > 骨架默认开启了 SQL、Redis 日志，压测前请先关闭 `.env` 的 `APP_DEBUG`
 
-## Installation
+## 安装
 
 > 需要先安装 [Swoole](https://wiki.swoole.com/#/environment)
 
@@ -15,7 +15,7 @@
 composer create-project --prefer-dist mix/grpc-skeleton grpc
 ```
 
-## Quick start
+## 快速开始
 
 启动 Swoole 多进程服务
 
@@ -29,15 +29,15 @@ composer run-script --timeout=0 swoole:start
 composer run-script --timeout=0 swooleco:start
 ```
 
-## Run script
+## 执行脚本
 
 - 命令中的 `--timeout=0` 参数是防止 composer 执行超时 [查看详情](https://getcomposer.org/doc/06-config.md#process-timeout)
 - `composer.json` 定义了命令执行脚本，对应上面的执行命令
 
 ```json
 "scripts": {
-    "swoole:start": "php bin/swoole.php start",
-    "swooleco:start": "php bin/swooleco.php start",
+    "swoole:start": "php bin/swoole.php",
+    "swooleco:start": "php bin/swooleco.php",
     "cli:clearcache": "php bin/cli.php clearcache"
 },
 ```
