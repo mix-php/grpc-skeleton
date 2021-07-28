@@ -1,8 +1,6 @@
 # gRPC development skeleton
 
-帮助你快速搭建 gRPC 项目骨架，并指导你如何使用该骨架的细节。
-
-> 骨架默认开启了 SQL、Redis 日志，压测前请先关闭 `.env` 的 `APP_DEBUG`
+帮助你快速搭建 gRPC 项目骨架，并指导你如何使用该骨架的细节，骨架默认开启了 SQL、Redis 日志，压测前请先关闭 `.env` 的 `APP_DEBUG`
 
 ## 安装
 
@@ -31,7 +29,7 @@ composer run-script --timeout=0 swooleco:start
 
 ## 执行脚本
 
-- 命令中的 `--timeout=0` 参数是防止 composer 执行超时 [查看详情](https://getcomposer.org/doc/06-config.md#process-timeout)
+- `composer run-script` 命令中的 `--timeout=0` 参数是防止 composer [执行超时](https://getcomposer.org/doc/06-config.md#process-timeout)
 - `composer.json` 定义了命令执行脚本，对应上面的执行命令
 
 ```json
