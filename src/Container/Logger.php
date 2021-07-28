@@ -38,7 +38,13 @@ class Logger implements HandlerInterface
 
     public function handle(array $record): bool
     {
-        printf("%s  %s  %s\n", $record['datetime']->format('Y-m-d H:i:s.u'), $record['level_name'], $record['message']);
+        $message = sprintf("%s  %s  %s\n", $record['datetime']->format('Y-m-d H:i:s.u'), $record['level_name'], $record['message']);
+        switch (PHP_SAPI) {
+            case 'cli':
+            case 'cli-server':
+                file_put_contents("php://stdout", $message);
+                break;
+        }
         return false;
     }
 
